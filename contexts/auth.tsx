@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext } from 'react';
 import { setCookie, captureCookie } from '@/resources/cookies';
-import { api } from '@/services/api';
+import api from '@/services/api';
 import { DataPayloadAutenticateUSer, User, AuthContextData } from './types';
 
 

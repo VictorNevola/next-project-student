@@ -1,9 +1,20 @@
 import useSWR from 'swr'
-import axios from 'axios';
+import axios from 'axios';;
 
-export const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_URL_BACKEND
+const api = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_URL_BACKEND,
+  validateStatus: function (status) {
+    return status < 500;
+  }
 });
+
+api.interceptors.request.use(
+  function (config) {
+    return config;
+  }, function (error) {
+    return Promise.reject(error);
+  }
+)
 interface Header {
   authorization?: string
 }
@@ -17,3 +28,6 @@ export function useFetch<Data = any, Error = any>(url: string, header: Header) {
 
   return { data, error }
 };
+
+export default api;
+

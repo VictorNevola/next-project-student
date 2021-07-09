@@ -1,12 +1,12 @@
 import * as S from '@/styles/pages/signup/styles';
-import { useState, useRef, useEffect } from 'react';
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useState } from 'react';
+import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import InputMask from 'react-input-mask';
 import ReactLoading from 'react-loading';
 import Link from 'next/link';
 
-import { api } from '@/services/api';
+import api from '@/services/api';
 
 import NotLoggedHeader from '@/components/header/notLogged';
 import cnpjValidation from '@/resources/validatorCnpj';
