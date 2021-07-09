@@ -1,7 +1,6 @@
 import * as S from '@/styles/pages/signup/styles';
 import { useState } from 'react';
 import { useForm } from "react-hook-form";
-import { toast } from "react-toastify";
 import InputMask from 'react-input-mask';
 import ReactLoading from 'react-loading';
 import Link from 'next/link';
@@ -29,17 +28,7 @@ export default function SignUp() {
         if (cnpjIsValid) {
             setCnpjInvalid(false);
             data.password = await encrypts(data.password);
-            const userCreated = await api.post('/userpj/register', data);
-
-            if (userCreated && userCreated.status === 201)
-                toast.success("Registrado com sucesso!", {
-                    autoClose: 5000,
-                    toastId: "userSignUP",
-                    onClose: () => window.location.pathname = "/signin"
-                });
-
-            if (userCreated && userCreated.status === 409) toast.error("Já existe um registro com esse CNPJ", { autoClose: 5000, toastId: "userSignUP", });
-
+            await api.post('/userpj/register', data);
             return setLoaderActive(false);
         };
 
@@ -76,11 +65,8 @@ export default function SignUp() {
                             <S.divInput>
                                 <S.titleInput> Razão Social  </S.titleInput>
                                 <S.input>
-                                    <InputMask
+                                    <input
                                         {...register("companyName", { required: true })}
-                                        alwaysShowMask={false}
-                                        mask=""
-                                        maskChar={null}
                                         name="companyName"
                                         placeholder="Imeals - LTDA"
                                     />
@@ -114,12 +100,10 @@ export default function SignUp() {
                                 <S.titleInput> Email Principal  </S.titleInput>
 
                                 <S.input>
-                                    <InputMask
+                                    <input 
                                         {...register("email", { required: true, pattern: /^(\s?[^\s,]+@[^\s,]+\.[^\s,]+\s?,)*(\s?[^\s,]+@[^\s,]+\.[^\s,]+)$/ })}
-                                        mask=""
-                                        maskChar={null}
-                                        name="email"
                                         type="email"
+                                        name="email"
                                         placeholder="imeals@exemplo.com"
                                     />
                                     {errors.email?.type == "required" && <S.infoError>Obrigatório</S.infoError>}
@@ -136,12 +120,10 @@ export default function SignUp() {
                                 <S.titleInput> Nome Responsavel</S.titleInput>
 
                                 <S.input>
-                                    <InputMask
+                                    <input
                                         {...register("name", { required: true })}
-                                        mask=""
-                                        maskChar={null}
-                                        name="name"
                                         type="text"
+                                        name="name"
                                     />
                                     {errors.name?.type == "required" && <S.infoError>Obrigatório</S.infoError>}
                                 </S.input>
@@ -152,10 +134,8 @@ export default function SignUp() {
                                 <S.titleInput> Nova Senha  </S.titleInput>
 
                                 <S.input>
-                                    <InputMask
+                                    <input
                                         {...register("password", { required: true })}
-                                        mask=""
-                                        maskChar={null}
                                         name="password"
                                         type="password"
                                     />

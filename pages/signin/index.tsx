@@ -1,5 +1,5 @@
 import * as S from "@/styles/pages/signin/styles";
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
 import ReactLoading from 'react-loading';
 import Link from 'next/link';
@@ -23,7 +23,7 @@ export default function SignIn() {
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const [errorUser, setErrorUser] = useState(false);
     const [loaderActive, setLoaderActive] = useState(false);
-    const { signed, Login, isLoading } = useAuth();
+    const { Login } = useAuth();
 
     const onSubmit: SubmitHandler<Inputs> = async data => {
 
