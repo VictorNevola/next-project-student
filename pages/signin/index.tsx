@@ -1,11 +1,9 @@
 import * as S from "@/styles/pages/signin/styles";
 import { useState, useEffect } from 'react';
 import { useForm, SubmitHandler } from "react-hook-form";
-
-import { toast } from "react-toastify";
 import ReactLoading from 'react-loading';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+
 
 import { useAuth } from '@/contexts/auth';
 
@@ -22,7 +20,6 @@ type Inputs = {
 
 export default function SignIn() {
 
-    const router = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm<Inputs>();
     const [errorUser, setErrorUser] = useState(false);
     const [loaderActive, setLoaderActive] = useState(false);
@@ -43,37 +40,15 @@ export default function SignIn() {
 
             const isAuthenticated = await Login(payload);
 
-            if (isAuthenticated && isAuthenticated.status === 200) {
-
-                toast.success("Sucesso!", {
-                    autoClose: 5000,
-                    toastId: "userSignIn",
-                    onClose: () => router.push('/admin')
-                });
-
-                return setLoaderActive(false);
-            }
+            if (isAuthenticated && isAuthenticated.status === 200) return setLoaderActive(false);
 
             setLoaderActive(false);
             setErrorUser(false);
-            return toast.error("Usuário ou senha incorretos", { autoClose: 5000, });
         }
 
         return setErrorUser(true);
 
     };
-
-    useEffect(() => {
-
-        if (signed && !isLoading) {
-            toast.success("Usuário já autenticado, sendo redirecionado!", {
-                autoClose: 3000,
-                toastId: "userSignIn",
-                onClose: () => router.push('/admin')
-            })
-        }
-
-    }, [signed])
 
     return (
         <>
