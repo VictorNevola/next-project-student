@@ -41,7 +41,7 @@ export default function PopUpMessages() {
 
     useEffect(() => {
 
-        if (router.pathname === "/signin" || router.pathname === "/" && signed) {
+        if (router.pathname === "/signin" && signed || router.pathname === "/" && signed) {
             const { messageFormated, redirect } = setMessageLog('userAutenticated', 'Usuário Logado');
             return setStates(messageFormated, redirect, 200);
         }
