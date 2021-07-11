@@ -13,12 +13,14 @@ const ProgressBarTop = () => {
         setProgress(progress);
     }, []);
 
-    api.defaults.onUploadProgress = (event) => setState(event.loaded, event.total);
+    api.defaults.onUploadProgress = (event) =>  setState(event.loaded, event.total);
     api.defaults.onDownloadProgress = (event) => setState(event.loaded, event.total);
 
     return (
         <LoadingBar
-            color='#6800C5'
+            color='#4de03db0'
+            height={12}
+            waitingTime={3000}
             progress={progress}
             onLoaderFinished={() => setProgress(0)}
         />

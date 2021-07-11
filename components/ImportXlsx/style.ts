@@ -37,12 +37,27 @@ export const ListFiles = styled.ul`
 `
 
 export const LIFile = styled.li`
-    display: flex;
-    align-items: center;
     font-weight: 600;
     font-size: 14px;
     color: #757474;
     margin-bottom: 6px;
+
+    & span {
+        display: block;
+    }
+
+    & strong {
+        font-weight: 600;
+        color: #333;
+    }
+
+    & a {
+        display: block;
+        font-size: 14px;
+        font-weight: 600;
+        color: #009ee3;
+        margin-top: 14px;
+    }
 `;
 
 export const BtnRegister = styled.button`

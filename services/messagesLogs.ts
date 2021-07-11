@@ -6,6 +6,8 @@ export default function setMessageLog(urlWithStatus: string, message: string): {
         '/userpj/register-201': { messageFormated: "Registrado com sucesso!", redirect: '/signin' },
         '/userpj/register-409': { messageFormated: "Já existe um registro com esse CNPJ", redirect: null },
         'userAutenticated': { messageFormated: "Usuário Logado", redirect: '/admin' },
+        '/products/register-201': { messageFormated: "Produtos Incluidos com Sucesso!", redirect: null },
+        '/products/register-200': { messageFormated: "Produtos Incluidos com Sucesso!", redirect: null },
         default: { messageFormated: message, redirect: null }
     }
 
