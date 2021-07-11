@@ -18,9 +18,7 @@ const ProgressBarTop = () => {
 
     return (
         <LoadingBar
-            color='#4de03db0'
-            height={12}
-            waitingTime={3000}
+            color='#E66B04'
             progress={progress}
             onLoaderFinished={() => setProgress(0)}
         />

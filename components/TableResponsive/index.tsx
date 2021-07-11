@@ -1,6 +1,22 @@
 import { TableContent, Thead, TableTr, TableTh, TableTd, BtnEdit, BtnDelete, TableTdActions } from './styles';
 
-export default function Table() {
+export const TableRow = () => {
+
+    return (
+        <TableTr>
+            <TableTd data-label="ID">3412</TableTd>
+            <TableTd data-label="Produto">Coca Cola 2 litros</TableTd>
+            <TableTd data-label="Preço">R$ 8,00</TableTd>
+            <TableTd data-label="Modificado em">04/01/2016</TableTd>
+            <TableTdActions >
+                <BtnEdit>Editar</BtnEdit>
+                <BtnDelete>Excluir</BtnDelete>
+            </TableTdActions>
+        </TableTr>
+    )
+};
+
+export default function Table({children}) {
     return (
         <TableContent >
             <Thead>
@@ -14,16 +30,9 @@ export default function Table() {
             </Thead>
 
             <tbody>
-                <TableTr>
-                    <TableTd data-label="ID">3412</TableTd>
-                    <TableTd data-label="Produto">Coca Cola 2 litros</TableTd>
-                    <TableTd data-label="Preço">R$ 8,00</TableTd>
-                    <TableTd data-label="Modificado em">04/01/2016</TableTd>
-                    <TableTdActions >
-                        <BtnEdit>Editar</BtnEdit>
-                        <BtnDelete>Excluir</BtnDelete>
-                    </TableTdActions>
-                </TableTr>
+                {
+                    children
+                }
             </tbody>
         </TableContent>
     )

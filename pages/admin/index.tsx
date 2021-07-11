@@ -1,4 +1,4 @@
-import Cookies from 'cookies';
+// import Cookies from 'cookies';
 import Layout from "@/components/Layout"
 
 const Dashboard = () => {
@@ -10,14 +10,14 @@ const Dashboard = () => {
 };
 
 
-Dashboard.getInitialProps = async ({req, res, props}) => {
-    const cookies = new Cookies(req, res);
-    const teste = cookies.get("IMEALS__AUTH");
+// Dashboard.getInitialProps = async ({req, res, props}) => {
+//     const cookies = new Cookies(req, res);
+//     const teste = cookies.get("IMEALS__AUTH");
 
-    console.log(teste)
+//     console.log(teste)
 
-    return {};
-};
+//     return {};
+// };
 
 
 export default Dashboard;

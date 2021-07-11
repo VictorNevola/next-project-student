@@ -4,6 +4,8 @@ export const TableContent = styled.table`
     box-shadow: 0 8px 16px 0 rgb(0 0 0 / 10%);
     background-color: #ffff;
     border-collapse: collapse;
+    border: 1px solid rgba(0,0,0,.1);
+    border-bottom: none;
     border-radius: 4px;
     margin: 0;
     padding: 0;
