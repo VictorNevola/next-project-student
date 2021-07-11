@@ -3,6 +3,7 @@ import { AiOutlinePlus, AiOutlineExport } from 'react-icons/ai';
 import Link from 'next/link';
 
 import Layout from '@/components/Layout';
+import Table from "@/components/TableResponsive";
 
 export default function Products() {
 
@@ -34,6 +35,8 @@ export default function Products() {
                 <Count>
                     Registrados: 1
                 </Count>
+
+                <Table />
             </>
         </Layout>
     )
