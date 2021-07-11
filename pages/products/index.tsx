@@ -16,6 +16,7 @@ const Products = ({ productsInital, totalProducts }: PropsPageProducts) => {
     const [productsToRender, setProducts] = useState(productsInital);
     const [pageListProduct, setPageListProduct]  = useState(1);
     const [hasmore, setHasMore] = useState(totalProducts > productsToRender.length);
+    const labelsForTable = ["ID", "Imagem", "Produto", "Modificado Em", "Rank"];
 
     const fetchMoreProducts = useCallback( async ()=> {
         const pagePagination = pageListProduct + 1;
@@ -64,10 +65,15 @@ const Products = ({ productsInital, totalProducts }: PropsPageProducts) => {
                         height={600}
                         loader={<h4>Carregando...</h4>}
                     >   
-                        <Table> 
-                            {productsToRender.map((i, index) => (
-                                <TableRow key={index} />
-                            ))}
+                        <Table headers={labelsForTable}> 
+                            <>
+                                {productsToRender.map((product, index) => {
+                                    const { idClient, urlImage, name, modifiedAt } = product;
+                                    const values = [idClient, urlImage, name, modifiedAt, 1];
+
+                                    return <TableRow labels={labelsForTable} values={values} key={index} />
+                                })}
+                            </>
                         </Table>
 
                 </InfiniteScroll>

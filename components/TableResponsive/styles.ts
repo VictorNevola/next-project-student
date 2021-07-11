@@ -81,30 +81,20 @@ export const TableTdActions = styled.td`
     justify-content: center;
     padding: .625em;
     text-align: center;
-
-    & button {
-        display: block;
-        border: none;
-        font-weight: 600;
-        padding: 8px;
-        border-radius: 4px;
-        max-width: 4.375rem;
-        width: 100%;
-        margin: 0 12px;
-
-        @media(max-width: 1150px) {
-            max-width: 44%;
-        }
-    }
-
+    height: 80px
 `
 
-export const BtnEdit = styled.button`
+export const BtnViewMore = styled.a`
+    display: block;
+    font-weight: 600;
+    padding: 8px;
+    border-radius: 4px;
     background-color: rgba(65,137,230,.15);
     color: #009ee3;
-`;
+    width: 100%;
 
-export const BtnDelete = styled.button`
-    background-color: #ec0000b0;
-    color: #333;
+    @media(max-width: 1150px) {
+        max-width: 44%;
+    }
+    
 `;

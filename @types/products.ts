@@ -1,4 +1,4 @@
-export interface products {
+export interface product {
     categories: Array<string>,
     createdAt: string,
     hasVariation: boolean,
@@ -15,6 +15,6 @@ export interface products {
 }
 
 export interface PropsPageProducts {
-    productsInital: products[],
+    productsInital: product[],
     totalProducts: number
 }
