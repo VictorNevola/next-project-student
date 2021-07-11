@@ -9,9 +9,8 @@ export default createGlobalStyle`
   }
 
   body {
-    -webkit-font-smoothing : antialised;
-    background-color: #f7f7f7;
-
+    font-smooth: antialised;
+    
     &::-webkit-scrollbar {
       width: 10px;
     }
