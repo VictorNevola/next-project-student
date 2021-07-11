@@ -1,3 +1,4 @@
+import Cookies from 'cookies';
 import Layout from "@/components/Layout"
 
 const Dashboard = () => {
@@ -9,10 +10,14 @@ const Dashboard = () => {
 };
 
 
-// Dashboard.getInitialProps = async props => {
-//     console.info('##### Congratulations! You are authorized! ######', props);
-//     return {};
-// };
+Dashboard.getInitialProps = async ({req, res, props}) => {
+    const cookies = new Cookies(req, res);
+    const teste = cookies.get("IMEALS__AUTH");
+
+    console.log(teste)
+
+    return {};
+};
 
 
 export default Dashboard;

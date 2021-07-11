@@ -26,7 +26,8 @@
       "@/resources/*": ["resources/*"],
       "@/services/*": ["services/*"],
       "@/contexts/*": ["contexts/*"],
-      "@/data/*": ["data/*"]
+      "@/data/*": ["data/*"],
+      "@/types/*": ["@types/*"]
     }
   },
   "include": [

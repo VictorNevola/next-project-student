@@ -1,11 +1,16 @@
 import { InfosHeader, SearchDiv, InputSearch, IconSearch, Buttons, Btn, BtnToExport, Count } from "@/styles/pages/products/styles";
 import { AiOutlinePlus, AiOutlineExport } from 'react-icons/ai';
 import Link from 'next/link';
+import Cookies from 'cookies';
 
 import Layout from '@/components/Layout';
 import Table from "@/components/TableResponsive";
 
-export default function Products() {
+import api from '@/services/api';
+import { PropsPageProducts } from "@/types/products";
+
+const Products = ({ productsInital }: PropsPageProducts) => {
+
 
     return (
         <Layout titlePage="Produtos">
@@ -22,7 +27,7 @@ export default function Products() {
 
                         <Btn>
                             <Link href="/products/import">
-                                <a> 
+                                <a>
                                     Importar <AiOutlinePlus />
                                 </a>
                             </Link>
@@ -33,7 +38,7 @@ export default function Products() {
                 </InfosHeader>
 
                 <Count>
-                    Registrados: 1
+                    Registrados: {productsInital.length}
                 </Count>
 
                 <Table />
@@ -42,3 +47,16 @@ export default function Products() {
     )
 
 }
+
+Products.getInitialProps = async ({ req, res }) => {
+    const cookies = new Cookies(req, res);
+    const authTokem = cookies.get("IMEALS__AUTH");
+
+    const { data } = await api.get('/products/list/1', { headers: { Authorization: `Bearer ${authTokem}` } });
+
+    return {
+        productsInital: data
+    };
+};
+
+export default Products;
