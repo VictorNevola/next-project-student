@@ -9,10 +9,10 @@ const Dashboard = () => {
 };
 
 
-Dashboard.getInitialProps = async props => {
-    console.info('##### Congratulations! You are authorized! ######', props);
-    return {};
-};
+// Dashboard.getInitialProps = async props => {
+//     console.info('##### Congratulations! You are authorized! ######', props);
+//     return {};
+// };
 
 
 export default Dashboard;

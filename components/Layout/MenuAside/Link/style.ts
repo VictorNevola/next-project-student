@@ -32,25 +32,6 @@ export const Item = styled.li`
             color: #009ee3;
         }
     }
-
-    &.is-active {
-        background-color: rgba(0,0,0,.04);
-        
-        a {
-            color: #009ee3;
-        }
-
-        svg {
-            path {
-                fill: #009ee3;
-                fill-opacity: 1;
-            }
-        }
-    }
-
-    &:hover {
-        background-color: rgba(0,0,0,.04);
-    }
 `;
 
 export const HR = styled.hr`
@@ -135,4 +116,15 @@ export const ALink = styled.a`
             transition: all .3s ease;
         }
     };
+
+    &.is-active {        
+        color: #009ee3;
+
+        svg {
+            path {
+                fill: #009ee3;
+                fill-opacity: 1;
+            }
+        }
+    }
 `;

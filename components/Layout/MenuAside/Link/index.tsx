@@ -12,14 +12,12 @@ export const LinkMenu = ({ titleLink, urlLink, svgLink, hasSubMenu, linksSubMenu
 
     const [activeDropdown, setActiveDropdown] = useState(JSON.parse(localStorage.getItem("menuDropDownIsActive") || "false"));
     const setDropdown = () => activeDropdown ? setActiveDropdown(false) : setActiveDropdown(true);
-    const [linkActive, setLinkActive] = useState(router.pathname === urlLink);
 
     useEffect(() => localStorage.setItem("menuDropDownIsActive", JSON.stringify(activeDropdown)),[activeDropdown]);
-    useEffect(() => setLinkActive(router.pathname === urlLink) , [router.pathname]);
-    
+
     return (
         <>
-            <Item className={linkActive && "is-active"}>
+            <Item>
                 {
                     hasSubMenu && linksSubMenu ?
                         <>
@@ -34,7 +32,7 @@ export const LinkMenu = ({ titleLink, urlLink, svgLink, hasSubMenu, linksSubMenu
                                         return (
                                             <ItemDropdown key={index}>
                                                 <Link href={subLink.urlLink}>
-                                                    <ALink> 
+                                                    <ALink className={subLink.urlLink === router.pathname && "is-active"}> 
                                                         {subLink.titleLink}
                                                     </ALink>
                                                 </Link>
@@ -46,7 +44,7 @@ export const LinkMenu = ({ titleLink, urlLink, svgLink, hasSubMenu, linksSubMenu
                         </>
                         :
                         <Link href={urlLink}>
-                            <ALink>
+                            <ALink className={urlLink === router.pathname && "is-active"}>
                                 <InlineSVG src={svgLink} />
                                 {titleLink}
                             </ALink>
