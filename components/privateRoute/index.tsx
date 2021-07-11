@@ -12,16 +12,16 @@ const withAuth = (WrappedComponent) => {
 
             if(!isLoading && !signed) router.replace('/signin');
 
-            if(isLoading && signed) {
+            if(!isLoading && signed) {
                 setVerified(signed);
             }
 
-        }, [isLoading]);
+        }, [isLoading, signed]);
 
         if(verified){
             return <WrappedComponent {...props} />;
         }else {
-            return null;
+            return <h1>Carregando...</h1>;
         }
 
     };
