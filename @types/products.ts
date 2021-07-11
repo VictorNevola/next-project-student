@@ -16,4 +16,5 @@ export interface products {
 
 export interface PropsPageProducts {
     productsInital: products[],
+    totalProducts: number
 }

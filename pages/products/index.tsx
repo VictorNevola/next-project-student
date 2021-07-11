@@ -9,25 +9,22 @@ import Layout from '@/components/Layout';
 import Table, { TableRow } from "@/components/TableResponsive";
 
 import api from '@/services/api';
-import { PropsPageProducts, products } from "@/types/products";
+import { PropsPageProducts } from "@/types/products";
 
-const Products = ({ productsInital }: PropsPageProducts) => {
+const Products = ({ productsInital, totalProducts }: PropsPageProducts) => {
 
-    const [products, setProducts] = useState(productsInital);
+    const [productsToRender, setProducts] = useState(productsInital);
     const [pageListProduct, setPageListProduct]  = useState(1);
-    const [hasmore, setHasMore] = useState(true);
+    const [hasmore, setHasMore] = useState(totalProducts > productsToRender.length);
 
     const fetchMoreProducts = useCallback( async ()=> {
         const pagePagination = pageListProduct + 1;
-        const { data } = await api.get<[products]>(`/products/list/${pagePagination}`);
-
-        if(data.length > 0){
-            const listProductsAtt = [...products, ...data];
-            setProducts(listProductsAtt);
-            return setPageListProduct(pagePagination);
-        }
-
-        return setHasMore(false);
+        const { data: { products, totalProducts } } = await api.get(`/products/list/${pagePagination}`);
+        const listProductsAtt = [...productsToRender, ...products];
+    
+        setProducts(listProductsAtt);
+        setHasMore(totalProducts > productsToRender.length);
+        setPageListProduct(pagePagination); 
 
     }, [pageListProduct]);
 
@@ -57,18 +54,18 @@ const Products = ({ productsInital }: PropsPageProducts) => {
                 </InfosHeader>
 
                 <Count>
-                    Registrados: {products.length}
+                    Registrados: {totalProducts}
                 </Count>
                 
                 <InfiniteScroll
-                        dataLength={products.length}
+                        dataLength={productsToRender.length}
                         next={fetchMoreProducts}
                         hasMore={hasmore}
-                        height={500}
+                        height={600}
                         loader={<h4>Carregando...</h4>}
                     >   
                         <Table> 
-                            {products.map((i, index) => (
+                            {productsToRender.map((i, index) => (
                                 <TableRow key={index} />
                             ))}
                         </Table>
@@ -82,10 +79,11 @@ const Products = ({ productsInital }: PropsPageProducts) => {
 
 Products.getInitialProps = async (ctx) => {
     const authTokem = cookies(ctx).IMEALS__AUTH || '';
-    const { data } = await api.get('/products/list/1', { headers: { Authorization: `Bearer ${authTokem}` } });
+    const { data: { products, totalProducts } } = await api.get('/products/list/1', { headers: { Authorization: `Bearer ${authTokem}` } });
 
     return {
-        productsInital: data || []
+        productsInital: products || [],
+        totalProducts
     };
 
 };
