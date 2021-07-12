@@ -3,7 +3,8 @@ import { useCallback, useState } from "react";
 import { AiOutlinePlus, AiOutlineExport } from 'react-icons/ai';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Link from 'next/link';
-import cookies from 'next-cookies'
+import Image from 'next/image';
+import cookies from 'next-cookies';
 
 import Layout from '@/components/Layout';
 import Table, { TableRow } from "@/components/TableResponsive";
@@ -28,6 +29,10 @@ const Products = ({ productsInital, totalProducts }: PropsPageProducts) => {
         setPageListProduct(pagePagination); 
 
     }, [pageListProduct]);
+
+    const loaderImage = ({ src, width, quality }) => {
+        return `${src}?w=${width}&q=${quality || 75}`
+    }
 
     return (
         <Layout titlePage="Produtos">
@@ -68,10 +73,36 @@ const Products = ({ productsInital, totalProducts }: PropsPageProducts) => {
                         <Table headers={labelsForTable}> 
                             <>
                                 {productsToRender.map((product, index) => {
-                                    const { idClient, urlImage, name, modifiedAt } = product;
-                                    const values = [idClient, urlImage, name, modifiedAt, 1];
+                                    const { idClient, urlImage, name, modifiedAt, uniqueID } = product;
 
-                                    return <TableRow labels={labelsForTable} values={values} key={index} />
+                                    return (
+                                        <TableRow key={index}> 
+                                            <>
+                                                <td data-label="ID"> {idClient} </td>
+                                                <td data-label="Imagem">
+                                                    {
+                                                        <Image
+                                                            loader={loaderImage}
+                                                            src={urlImage}
+                                                            alt={name}
+                                                            width={60}
+                                                            height={60}
+                                                        />
+                                                    }
+                                                </td>
+                                                <td data-label="Produto"> {name} </td>
+                                                <td data-label="Modificado Em">{ new Date(modifiedAt).toLocaleString()} </td>
+                                                <td data-label="Rank"> {1} </td>
+                                                <td id="actions">
+                                                    <Link href={`/products/${uniqueID}`}>
+                                                        <a>
+                                                            + detalhes
+                                                        </a> 
+                                                    </Link>
+                                                </td>
+                                            </>
+                                        </TableRow>
+                                    );
                                 })}
                             </>
                         </Table>

@@ -42,6 +42,53 @@ export const TableTr = styled.tr`
         border-bottom: 3px solid #ddd;
         display: block;
     }
+
+    & td{
+        padding: .625em;
+        text-align: center;
+
+        @media(max-width: 1150px) {
+            border-bottom: 1px solid #ddd;
+            display: block;
+            font-size: .8em;
+            text-align: right;
+
+            &::before {
+                content: attr(data-label);
+                float: left;
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+
+            &:last-child {
+                border-bottom: 0;
+                text-align: center;
+            }
+        }
+
+        &#actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: .625em;
+            text-align: center;
+            height: 80px;
+
+            a {
+                display: block;
+                font-weight: 600;
+                padding: 8px;
+                border-radius: 4px;
+                background-color: rgba(65,137,230,.15);
+                color: #009ee3;
+                width: 100%;
+    
+                @media(max-width: 1150px) {
+                    max-width: 44%;
+                }
+            }
+        }
+    }
 `
 export const TableTh = styled.th`
     padding: .625em;
@@ -51,50 +98,3 @@ export const TableTh = styled.th`
     letter-spacing: .1em;
     text-transform: uppercase;
 `
-export const TableTd = styled.td`
-    padding: .625em;
-    text-align: center;
-
-    @media(max-width: 1150px) {
-        border-bottom: 1px solid #ddd;
-        display: block;
-        font-size: .8em;
-        text-align: right;
-
-        &::before {
-            content: attr(data-label);
-            float: left;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        &:last-child {
-            border-bottom: 0;
-            text-align: center;
-        }
-    }
-`
-
-export const TableTdActions = styled.td`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: .625em;
-    text-align: center;
-    height: 80px
-`
-
-export const BtnViewMore = styled.a`
-    display: block;
-    font-weight: 600;
-    padding: 8px;
-    border-radius: 4px;
-    background-color: rgba(65,137,230,.15);
-    color: #009ee3;
-    width: 100%;
-
-    @media(max-width: 1150px) {
-        max-width: 44%;
-    }
-    
-`;

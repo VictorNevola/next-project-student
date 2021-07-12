@@ -4,6 +4,5 @@ export interface PropsTable {
 }
 
 export interface PropsTableRow{
-    labels: string[];
-    values: any
+    children: JSX.Element
 }
